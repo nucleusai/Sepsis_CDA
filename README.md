@@ -15,18 +15,18 @@ Before running this code, ensure that you have the following set up:
 
 **Workflow overview**
 
-Step 1 | ConversorPSV.py:
+### Step 1 | ConversorPSV.py:
 This is a simple Python script that converts PSV (Pipe-Separated Values) files to CSV (Comma-Separated Values) format. 
 The PSV files typically contain medical data with pipe '|' as the delimiter. 
 This script is specifically designed for converting PSV files in a directory into CSV format. 
 Additionally, it adds 'Paciente' (patient) and 'Hora' (hour) columns to the CSV data, as the original PSV files lack proper identification.
 
-Step 2 | ImportarCSV.py:
+### Step 2 | ImportarCSV.py:
 This script is designed to import multiple CSV files into a MongoDB database using the Python programming language. 
 It is particularly useful for handling patient data in the context of a healthcare project. 
 Below, you will find an explanation of how the script works and how to use it.
 
-Step 3 | Group_aggregation.py:
+### Step 3 | Group_aggregation.py:
 The purpose of this script is to perform a series of data transformation and aggregation operations on the SepsisResult collection to organize the data into specific categories. 
 The resulting data is then stored in a new collection called VisualizacionGrupos. 
 
@@ -35,7 +35,7 @@ The script accomplishes the following tasks:
 + Projecting Fields: It removes unnecessary fields from the documents to keep only the newly added fields, effectively organizing the data into categories.
 + Final Output: It saves the transformed data into a new collection named VisualizacionGrupos.
 
-Step 4 | Aggregation_Variables.py.py:
+### Step 4 | Aggregation_Variables.py.py:
 The code is written for MongoDB and is used to process a collection of patient data to calculate SOFA scores and determine sepsis according to specific criteria. 
 SOFA scores are used to assess the severity of organ dysfunction in critically ill patients, and the presence of sepsis is determined using the Sepsis-3 criteria.
 
