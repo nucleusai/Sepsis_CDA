@@ -39,8 +39,6 @@ The script accomplishes the following tasks:
 The code is written for MongoDB and is used to process a collection of patient data to calculate SOFA scores and determine sepsis according to specific criteria. 
 SOFA scores are used to assess the severity of organ dysfunction in critically ill patients, and the presence of sepsis is determined using the Sepsis-3 criteria.
 
-Pipeline Overview
-
 The aggregation variables consists of various stages, each responsible for different calculations. 
 Below is an overview of the pipeline stages:
 
