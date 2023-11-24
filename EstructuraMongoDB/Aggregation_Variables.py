@@ -1,4 +1,16 @@
-db.DataPacientes.aggregate([
+from pymongo import MongoClient
+
+#CONEXION SERVIDOR
+client = MongoClient('localhost')
+
+#CONEXION A LA BASE DE DATOS Y A LA COLECCION
+
+db = client['SepsisTraining'] # Se esta almacenando la base de datos que se esta utilizando
+col = db['DataPacientes'] # Se esta almacenando la coleccion en la base de datos
+print(f"Conectado a la base de datos: {db.name}")
+print(f"Seleccionada la colección: {col.name}")
+
+col.aggregate([
                             {$addFields:{ 
                                           HR_SIRS: {
                                                  $switch: {

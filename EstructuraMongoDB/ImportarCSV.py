@@ -8,9 +8,7 @@ from os.path import isfile, join
 
 # Rutas de acceso locales
 
-ruta = r'C:\Users\Cristian Toro\Desktop\Adelantos Proyecto de Grado\AnamnesisGIT\anamnesis\Anamnesis\sespsis_exploration_dataset\Hospital_A'
-ruta2='C:/Users/Cristian Toro/Desktop/Adelantos Proyecto de Grado/AnamnesisGIT/anamnesis/Anamnesis/sespsis_exploration_dataset/Hospital_A/'
-
+ruta2='/home/sdrivert/nucleusai/Sepsis_CDA/EstructuraMongoDB/files/'
 
 #Función importando los archivos individuales estructurando y organizando los pacientes 
 
@@ -21,17 +19,19 @@ def mongoimport(csv_path, db_name, coll_name, db_url='localhost'):
         coll = db[coll_name]
         data = pd.read_csv(archivo, sep=',')
         payload = json.loads(data.to_json(orient='records'))
-        coll.insert(payload)
+        coll.insert_many(payload)
         #return coll.count()
 
 
-for paciente in listdir(ruta):
+for paciente in listdir(ruta2):
         
          ndb = "SepsisTraining"
          col = "DataPacientes"
          archivo = ruta2+paciente
-         mongoimport(archivo, ndb, col)
+         try:
+            mongoimport(archivo, ndb, col)
+         except Exception as e:
+             print(f"Se produjo un error con el paciente: {paciente}")
 
 print("Datos importados con exito")
-
 

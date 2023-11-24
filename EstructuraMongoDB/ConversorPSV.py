@@ -7,8 +7,7 @@ from os.path import isfile, join
 
 # Rutas locales de los archivos
 
-ruta = r'C:\Users\Cristian Toro\Desktop\Adelantos Proyecto de Grado\AnamnesisGIT\anamnesis\Anamnesis\training'
-ruta2='C:/Users/Cristian Toro/Desktop/Adelantos Proyecto de Grado/AnamnesisGIT/anamnesis/Anamnesis/training/'
+ruta2 = '/home/sdrivert/nucleusai/training_setA/'
 
 # Función para la conversión de los archivos PSV a CSV, 
 # Creación de las columnas Paciente y Hora. Ya que los datos no contaban con identificación se tomo el numero del paciente
@@ -31,9 +30,13 @@ def listar_directorio(ruta):
             data.loc[i, "Paciente"] = nombre
             hora=hora+1
     
-        csv = '.cvs'
+        print(paciente)
+        csv = '.csv'
         Narchivo = nombre + csv
-        data.to_csv( Narchivo, sep=',')
+        directorio_salida = 'files/'
+        data.to_csv( directorio_salida + Narchivo, sep=',')
+
+listar_directorio(ruta2)
       
 
 print("Datos convertidos con exito")
