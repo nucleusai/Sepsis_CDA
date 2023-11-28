@@ -8,7 +8,7 @@ from os.path import isfile, join
 
 # Rutas de acceso locales
 
-ruta2='/home/sdrivert/nucleusai/Sepsis_CDA/EstructuraMongoDB/files/'
+ruta2='D:/Univalle/Tesis/CSV Dataset/'
 
 #Función importando los archivos individuales estructurando y organizando los pacientes 
 

@@ -7,7 +7,7 @@ from os.path import isfile, join
 
 # Rutas locales de los archivos
 
-ruta2 = '/home/sdrivert/nucleusai/training_setA/'
+ruta2 = 'D:/Univalle/Tesis/Dataset/'
 
 # Función para la conversión de los archivos PSV a CSV, 
 # Creación de las columnas Paciente y Hora. Ya que los datos no contaban con identificación se tomo el numero del paciente
@@ -32,8 +32,9 @@ def listar_directorio(ruta):
     
         print(paciente)
         csv = '.csv'
+        print(nombre)
         Narchivo = nombre + csv
-        directorio_salida = 'files/'
+        directorio_salida = 'D:/Univalle/Tesis/CSV Dataset/'
         data.to_csv( directorio_salida + Narchivo, sep=',')
 
 listar_directorio(ruta2)
