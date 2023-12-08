@@ -1,5 +1,7 @@
 from pymongo import MongoClient
 
+# CONSTRUCTOR DE LA CLASE LLAMA AL SERVICIO DE DOCKER COMPOSE Y REALIZA LA CONEXIÓN CON LA BD
+
 #CONEXION SERVIDOR
 client = MongoClient('localhost')
 
@@ -10,6 +12,8 @@ col = db['DataPacientes'] # Se esta almacenando la coleccion en la base de datos
 print(f"Conectado a la base de datos: {db.name}")
 print(f"Seleccionada la colección: {col.name}")
 
+
+# SERÍA UNA FUNCIÓN DE LA CLASE
 col.aggregate([
                      {"$addFields":{ 
                                    "HR_SIRS": {

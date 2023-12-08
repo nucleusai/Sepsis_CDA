@@ -12,6 +12,7 @@ col = db['DataPacientes'] # Se esta almacenando la coleccion en la base de datos
 document_count = col.count_documents({})  # Cuenta todos los documentos en la colección
 print(f"Número total de documentos en la colección: {document_count}")
 
+# ESTA FUNCION ORGANIZA EL CDA
 # GRUPOS AGREGACIÓN---------------------------------------------------------------------------------------------------------------------------------------------------
 col.aggregate([
     {

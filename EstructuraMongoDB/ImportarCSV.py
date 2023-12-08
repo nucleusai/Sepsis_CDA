@@ -8,8 +8,8 @@ from os.path import isfile, join
 
 # Rutas de acceso locales
 
-ruta2='D:/Univalle/Tesis/CSV Dataset/'
-
+#ruta2='D:/Univalle/Tesis/CSV Dataset/'
+ruta2 = '/output_data/'
 #Función importando los archivos individuales estructurando y organizando los pacientes 
 
 def mongoimport(csv_path, db_name, coll_name, db_url='localhost'):

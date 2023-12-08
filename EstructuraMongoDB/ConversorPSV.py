@@ -1,13 +1,14 @@
 # Import necesarios para la conversión de los archivos PSV
-
+# DEJARLO COMO FUNCION UTILS
 import pandas as pd
 import os
 from os import listdir
 from os.path import isfile, join
 
 # Rutas locales de los archivos
-
-ruta2 = 'D:/Univalle/Tesis/Dataset/'
+#ruta2 = 'D:/Univalle/Tesis/dataset_pequeno/'
+#ruta2 = 'D:/Univalle/Tesis/Dataset/'
+ruta2 = '/input_data/'
 
 # Función para la conversión de los archivos PSV a CSV, 
 # Creación de las columnas Paciente y Hora. Ya que los datos no contaban con identificación se tomo el numero del paciente
@@ -34,10 +35,11 @@ def listar_directorio(ruta):
         csv = '.csv'
         print(nombre)
         Narchivo = nombre + csv
-        directorio_salida = 'D:/Univalle/Tesis/CSV Dataset/'
+        #directorio_salida = 'D:/Univalle/Tesis/CSV Dataset pequeno/'
+        directorio_salida = '/output_data/'
         data.to_csv( directorio_salida + Narchivo, sep=',')
 
-listar_directorio(ruta2)
+#listar_directorio(ruta2)
       
 
-print("Datos convertidos con exito")
+#print("Datos convertidos con exito")
