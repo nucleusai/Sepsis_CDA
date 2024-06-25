@@ -4,8 +4,8 @@ services:
   mongo:
     image: mongo:latest
     container_name: mongodb_container
-    # volumes:
-    #   - mongodb_data:/data/db
+    volumes:
+      - mongodb_data:/data/db
     ports:
       - "27017:27017"
 
@@ -14,11 +14,12 @@ services:
       context: ./EstructuraMongoDB
       dockerfile: Dockerfile
     container_name: python_container
-    # volumes:
-    #   - ./scripts:/app
+    volumes:
+      - mongodb_data:/data/db
     depends_on:
       - mongo
+    
 
-# volumes:
-#   mongodb_data:
-#     driver: local
+volumes:
+  mongodb_data:
+    driver: local

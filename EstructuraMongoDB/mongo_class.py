@@ -12,7 +12,6 @@ class Mongo:
         self.db = self.client[db]
         self.col = self.db[col]
     
-    
     def importar_csv(self, ruta2 = '/output_data/'):
         
         def mongoimport(archivo):
@@ -31,7 +30,6 @@ class Mongo:
              print(f"Se produjo un error con el paciente: {paciente}")
 
         print("Datos importados con exito")
-    
     
     def group_aggregation(self):
         # Realiza una operación simple para verificar la conexión
@@ -360,3 +358,6 @@ class Mongo:
                                                                     }},
                                                                     
                             {"$out": "NewDataComplet"}])
+    
+    def obtener_coleccion(self):
+        return self.col
