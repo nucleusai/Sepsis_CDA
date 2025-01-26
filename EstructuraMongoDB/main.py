@@ -4,8 +4,9 @@ import subprocess
 
 # # ConversorPSV
 # ruta2 = './dataset_pequeno/'
+ruta2 = '/input_data/'
+# rutaOutput = 'C:/Users/USUARIO/Documents/TESIS/CDA/EstructuraMongoDB/CsvDatasetPequeno/'
 
-ruta2 = '/input_data'
 psv_to_csv(ruta2)
 print("Datos convertidos con exito")
 
@@ -15,13 +16,13 @@ mongo.group_aggregation()
 mongo.aggregation_variables()
 
 # Validar la consistencia de los datos
-read_psv('/input_data/', 'mongodb_container', 'SepsisTraining', 'NewDataComplet')
+read_psv(ruta2, 'mongodb_container', 'SepsisTraining', 'NewDataComplet')
 print('VALIDACION TERMINADA')
 
 # Ejecutar mongoexport
 mongoexport_command = [
     "mongoexport",
-    "--host", "mongodb_container:27017",  
+    "--host", "mongodb_container",  
     "--db", "SepsisTraining",
     "--collection", "NewDataComplet",  
     "--out", "/data/db/NewDataComplet.json"]

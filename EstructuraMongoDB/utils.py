@@ -8,7 +8,7 @@ from os.path import isfile, join
 from mongo_class import Mongo
 
 # Rutas locales de los archivos
-#ruta2 = 'D:/Univalle/Tesis/dataset_pequeno/'
+# ruta2 = 'C:/Users/USUARIO/Documents/TESIS/CDA/EstructuraMongoDB/dataset_pequeno/'
 #ruta2 = 'D:/Univalle/Tesis/Dataset/'
 ruta2 = '/input_data/'
 
@@ -21,7 +21,7 @@ def psv_to_csv(ruta):
     
         ruta3 = ruta2+paciente
         data1 = pd.read_table(ruta3, sep='|')
-        data= data1.fillna(0)
+        data= data1.fillna(-9999)
 
         nombre= os.path.basename(ruta3)
         nombre= os.path.splitext(nombre)[0]
@@ -37,7 +37,7 @@ def psv_to_csv(ruta):
         csv = '.csv'
         print(nombre)
         Narchivo = nombre + csv
-        #directorio_salida = 'D:/Univalle/Tesis/CSV Dataset pequeno/'
+        # directorio_salida = 'C:/Users/USUARIO/Documents/TESIS/CDA/EstructuraMongoDB/CsvDatasetPequeno/'
         directorio_salida = '/output_data/'
         data.to_csv( directorio_salida + Narchivo, sep=',')
 
@@ -55,9 +55,10 @@ def read_psv(ruta, host, db, col):
             for fila in reader:
                 # print(fila)
                 filtro = {"Paciente": nombre}
+
                 for encabezado, medida in zip(encabezados, fila):
-                    # print(encabezado, medida)
-                    filtro[encabezado] = 0 if medida == "NaN" else float(medida)
+                    filtro[encabezado] = -9999 if medida == -9999 else float(medida)
+
                 filtro['Hora'] = hora
                 # filtro['Hoja'] = 'Verde'
                 registro = mongo.obtener_coleccion().find_one(filtro)
