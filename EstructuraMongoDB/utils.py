@@ -48,7 +48,7 @@ def read_psv(ruta, host, db, col):
     for paciente in listdir(ruta):
         nombre = paciente.split('.')[0]
         hora = 0
-        with open(ruta + '/' + paciente, 'r') as file:
+        with open(ruta + paciente, 'r') as file:
             reader = csv.reader(file, delimiter = '|')  
             encabezados = next(reader)
             print(encabezados)
@@ -57,7 +57,7 @@ def read_psv(ruta, host, db, col):
                 filtro = {"Paciente": nombre}
 
                 for encabezado, medida in zip(encabezados, fila):
-                    filtro[encabezado] = -9999 if medida == -9999 else float(medida)
+                    filtro[encabezado] = -9999 if medida == "NaN" else float(medida)
 
                 filtro['Hora'] = hora
                 # filtro['Hoja'] = 'Verde'

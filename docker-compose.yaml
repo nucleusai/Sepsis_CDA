@@ -9,9 +9,7 @@ services:
       - "27017:27017"
 
   python-app:
-    build:
-      context: ./EstructuraMongoDB
-      dockerfile: Dockerfile
+    image: saosj/cda:v1
     container_name: python_container
     volumes:
       - mongodb_data:/data/db
