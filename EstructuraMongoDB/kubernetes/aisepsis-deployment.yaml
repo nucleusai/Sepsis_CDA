@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aisepsis
+  labels:
+    app: aisepsis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aisepsis
+  template:
+    metadata:
+      labels:
+        app: aisepsis
+    spec:
+      containers:
+      - name: aisepsis
+        image: saosj/aisepsis:v1
+        ports:
+        - containerPort: 8000  # Cambia si tu app corre en otro puerto
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongodb-container:27017"  # Asegúrate de tener un Service llamado 'mongodb'
