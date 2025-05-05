@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: python-app-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+        - name: python-app
+          image: saosj/cda:v3
+      restartPolicy: Never
+  backoffLimit: 0
