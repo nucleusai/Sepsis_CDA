@@ -8,66 +8,30 @@ services:
       - mongodb_data:/data/db
     ports:
       - "27017:27017"
-    networks:
-      - elastic_net
 
-  python-app:
-    image: saosj/cda:v1
-    container_name: python_container
+  python-app-job:
+    image: saosj/cda:v3
+    container_name: python-app-job
     volumes:
       - mongodb_data:/data/db
     depends_on:
       - mongo
-    networks:
-      - elastic_net
-
-  elasticsearch:
-    image: saosj/elasticsearch:v1
-    container_name: elasticsearch
-    environment:
-      - discovery.type=single-node
+  
+  aisepsis:
+    image: saosj/aisepsis:v1
+    container_name: aisepsis
     ports:
-      - "9200:9200"
-      - "9300:9300"
-    networks:
-      - elastic_net
-    healthcheck:
-      test: ["CMD", "curl", "-f", "-u", "elastic:123456", "http://localhost:9200"]
-      interval: 20s   
-      timeout: 15s     
-      retries: 5      
-      start_period: 60s  
-
-  kibana:
-    image: saosj/kibana:v1
-    container_name: kibana
+      - "8000:80"
     environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-    ports:
-      - "5601:5601"
+      - MONGO_URI=mongodb://mongo:27017
     depends_on:
-      elasticsearch:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5601/api/status"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-    networks:
-      - elastic_net
+      - mongo
 
   dashboard:
-    image: saosj/dashboard:v1
+    image: saosj/dashboardsl:v2
     container_name: dashboard
     ports:
       - "8050:8050"  
-    depends_on:
-      elasticsearch:
-        condition: service_healthy  
-      kibana:
-        condition: service_healthy 
-    networks:
-      - elastic_net
 
 networks:
   elastic_net:
