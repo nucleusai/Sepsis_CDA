@@ -17,6 +17,8 @@ class Mongo:
         def mongoimport(archivo):
             data = pd.read_csv(archivo, sep=',')
             payload = json.loads(data.to_json(orient='records'))
+            for registro in payload:
+                registro["notificado"] = True
             self.col.insert_many(payload)
             
         for paciente in listdir(ruta2):
@@ -44,7 +46,8 @@ class Mongo:
                     "x0_header": {
                         "ID": "$_id",
                         "Hora": "$Hora",
-                        "patient": "$Paciente"
+                        "patient": "$Paciente",
+                        "notificado": True
                     }
                 }
             },
@@ -174,7 +177,8 @@ class Mongo:
                     "PTT": 0,
                     "WBC": 0,
                     "Fibrinogen": 0,
-                    "Platelets": 0
+                    "Platelets": 0,
+                    "notificado": 0
                 }
             },
             {
@@ -223,6 +227,7 @@ class Mongo:
         # SERÍA UNA FUNCIÓN DE LA CLASE
         self.col.aggregate([
                             {"$addFields":{ 
+                                        "notificado": True,
                                         "HR_SIRS": {
                                                 "$switch": {
                                                         "branches":[
@@ -246,6 +251,7 @@ class Mongo:
                                                                 "branches":[
                                                                     {"case": {"$eq": ["$FiO2",0]}, "then":"No valido"},
                                                                     {"case": {"$ne": ["$FiO2",0]}, "then": {"$divide":["$SaO2", "$FiO2"]}}]}}, "default": "N.A"  }},
+                                    
                             {"$addFields":{ 
                                         "Respiracion_SOFA" : {
                                                         "$switch" : {
@@ -295,7 +301,8 @@ class Mongo:
                                                                     {"case": {"$and": [  {"$and": [{"$gt" :["$Creatinine", 3.4]}, {"$lt" :["$Creatinine", 5.0]}]}]}, "then" : 3},
                                                                     {"case": {"$and": [  {"$gt" :["$Creatinine", 5.0]}]}, "then" : 4}],
                                                                     "default": 0}}}},
-                            {"$project":  { "_id":1, 
+                            {"$project":  { "_id":1,
+                                        "notificado": 1, 
                                         "Paciente":1, 
                                         "Hora":1,
                                         "Hospital":1, 

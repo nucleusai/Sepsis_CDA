@@ -18,7 +18,7 @@ spec:
       - name: aisepsis
         image: saosj/aisepsis:v1
         ports:
-        - containerPort: 8000  # Cambia si tu app corre en otro puerto
+        - containerPort: 8000  
         env:
         - name: MONGO_URI
-          value: "mongodb://mongodb-container:27017"  # Asegúrate de tener un Service llamado 'mongodb'
+          value: "mongodb://mongodb-container:27017"  
