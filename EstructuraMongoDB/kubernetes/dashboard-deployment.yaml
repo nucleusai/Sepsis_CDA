@@ -14,6 +14,15 @@ spec:
     spec:
       containers:
         - name: dashboard
-          image: saosj/dashboardsl:v1
+          image: saosj/dashboardsl:v3
           ports:
             - containerPort: 8050
+          env:
+          - name: HOST_BD
+            value: "mongodb-container"
+          - name: HOST_BD_PORT
+            value: "27017"
+          - name: HOST_AI_MODEL
+            value: "aisepsis"
+          - name : HOST_AI_MODEL_PORT
+            value: "8000"
