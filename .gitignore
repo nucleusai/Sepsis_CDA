@@ -1,3 +1,5 @@
 /EstructuraMongoDB/files/
 /EstructuraMongoDB/venv/
 EstructuraMongoDB/.env
+EstructuraMongoDB/__pycache__/mongo_class.cpython-313.pyc
+EstructuraMongoDB/__pycache__/**

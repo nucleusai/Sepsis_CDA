@@ -8,9 +8,9 @@ from os.path import isfile, join
 from mongo_class import Mongo
 
 # Rutas locales de los archivos
-# ruta2 = 'C:/Users/USUARIO/Documents/TESIS/CDA/EstructuraMongoDB/dataset_pequeno/'
+ruta2 = 'C:/Users/USUARIO/Documents/TESIS/CDA/EstructuraMongoDB/dataset_pequeno/'
 #ruta2 = 'D:/Univalle/Tesis/Dataset/'
-ruta2 = '/input_data/'
+# ruta2 = '/input_data/'
 
 # Función para la conversión de los archivos PSV a CSV, 
 # Creación de las columnas Paciente y Hora. Ya que los datos no contaban con identificación se tomo el numero del paciente
@@ -37,8 +37,8 @@ def psv_to_csv(ruta):
         csv = '.csv'
         print(nombre)
         Narchivo = nombre + csv
-        # directorio_salida = 'C:/Users/USUARIO/Documents/TESIS/CDA/EstructuraMongoDB/CsvDatasetPequeno/'
-        directorio_salida = '/output_data/'
+        directorio_salida = 'C:/Users/USUARIO/Documents/TESIS/CDA/EstructuraMongoDB/CsvDatasetPequeno/'
+        # directorio_salida = '/output_data/'
         data.to_csv( directorio_salida + Narchivo, sep=',')
 
 def read_psv(ruta, host, db, col):
@@ -68,13 +68,13 @@ def read_psv(ruta, host, db, col):
                     raise Exception("Error: No se encontró ningún registro para el filtro:", filtro)
                 hora = hora + 1
                 
-    print(accPSV, accMongo)
-    if(accPSV == accMongo):
-        print('Validación exitosa')
-        return True
-    else:
-        print('Validación incorrecta')
-        return False
+    # print(accPSV, accMongo)
+    # if(accPSV == accMongo):
+    #     print('Validación exitosa')
+    #     return True
+    # else:
+    #     print('Validación incorrecta')
+    #     return False
 
 # read_psv('./dataset_pequeno/','mongodb://127.0.0.1:27017','SepsisTraining', 'NewDataComplet')
 
