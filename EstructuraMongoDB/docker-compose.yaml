@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongodb-container
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+
+  python-app-job:
+    image: saosj/cda:v3
+    container_name: python-app-job
+    volumes:
+      - mongodb_data:/data/db
+    depends_on:
+      - mongo
+  
+  aisepsis:
+    image: saosj/aisepsis:v1
+    container_name: aisepsis
+    ports:
+      - "8000:80"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+    depends_on:
+      - mongo
+
+  dashboard:
+    image: saosj/dashboardsl:v2
+    container_name: dashboard
+    ports:
+      - "8050:8050"  
+
+networks:
+  elastic_net:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local

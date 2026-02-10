@@ -1,3 +1,7 @@
+Realizar una transformación desde Mongo para resolver la transformación de los "NaN" para transformar en -9999
+
+Entender el estandar FHIR y el de Siemens Healthineers
+
 # Sepsis_CDA | PyMongoDB Aggregation Pipeline for Medical Data Visualization
 
 This documentation provides an overview and usage guide for the MongoDB Aggregation Pipeline code used to process medical data and create a structured output for visualization. 

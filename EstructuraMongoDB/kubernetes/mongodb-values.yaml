@@ -1,0 +1,13 @@
+mongodb:
+  uri: "mongodb://mongodb-container:27017"
+
+serviceMonitor:
+  enabled: true
+  namespace: metrics
+  additionalLabels:
+    release: prometheus
+
+extraArgs:
+  - --collect-all
+  - --discovering-mode
+  - --compatible-mode

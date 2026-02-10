@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aisepsis
+  labels:
+    app: aisepsis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: aisepsis
+  template:
+    metadata:
+      labels:
+        app: aisepsis
+    spec:
+      containers:
+      - name: aisepsis
+        image: saosj/aisepsis:v1
+        ports:
+        - containerPort: 8000  
+        env:
+        - name: MONGO_URI
+          value: "mongodb://mongodb-container:27017"  
